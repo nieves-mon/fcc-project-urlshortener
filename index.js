@@ -34,10 +34,12 @@ app.post("/api/shorturl", function (req, res) {
   const idx = urls.findIndex((el) => el == url);
   if (idx != -1) {
     res.json({ original_url: url, short_url: idx });
+    return;
   }
 
   if (!isValidUrl(url)) {
     res.json({ error: "invalid url" });
+    return;
   }
 
   urls.push(url);
